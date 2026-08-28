@@ -64,22 +64,22 @@ export const MOCK_DEMAND_ANALYTICS: DemandWiseAnalyticsRow[] = [
     varPct: 4.43,
     aiNote: 'Below BP and below last year.',
   },
-  {
-    demand: 'Demand 5',
-    broadHead: 'Repairs & Maintenance of Motive Power',
-    actualCr: 0.00,
-    bpCr: 146.01,
-    varPct: -3.38,
-    aiNote: 'Broadly in line with BP and last year.',
-  },
-  {
-    demand: 'Demand 3',
-    broadHead: 'General Superintendence & Services',
-    actualCr: 0.00,
-    bpCr: 213.36,
-    varPct: -2.17,
-    aiNote: 'Marginally above BP; higher than last year.',
-  },
+  // {
+  //   demand: 'Demand 5',
+  //   broadHead: 'Repairs & Maintenance of Motive Power',
+  //   actualCr: 0.00,
+  //   bpCr: 146.01,
+  //   varPct: -3.38,
+  //   aiNote: 'Broadly in line with BP and last year.',
+  // },
+  // {
+  //   demand: 'Demand 3',
+  //   broadHead: 'General Superintendence & Services',
+  //   actualCr: 0.00,
+  //   bpCr: 213.36,
+  //   varPct: -2.17,
+  //   aiNote: 'Marginally above BP; higher than last year.',
+  // },
 ]
 
 export async function getDemandWiseAnalytics(): Promise<DemandWiseAnalyticsRow[]> {
