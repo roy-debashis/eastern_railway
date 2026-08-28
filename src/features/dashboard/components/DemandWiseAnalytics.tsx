@@ -12,45 +12,45 @@ export function DemandWiseAnalytics({
 }: DemandWiseAnalyticsProps) {
   if (isLoading || !data || data.length === 0) {
     return (
-      <div className="h-64 rounded-xl border border-slate-200 bg-white p-4 flex items-center justify-center text-xs text-slate-500 shadow-sm">
+      <div className="h-44 rounded-xl border border-slate-200 bg-white p-3 flex items-center justify-center text-xs text-slate-500 shadow-xs">
         Loading Demand-wise Analytics...
       </div>
     )
   }
 
   return (
-    <div className="rounded-xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-sm text-slate-900">
-      {/* Title with blue "C." badge and Info icon matching screenshot */}
-      <div className="flex items-center justify-between border-b border-slate-200 pb-3 mb-3">
-        <div className="flex items-baseline gap-2">
-          <span className="text-base font-extrabold text-blue-600 font-sans">
+    <div className="rounded-xl border border-slate-200/90 bg-white p-3.5 sm:p-4 shadow-xs text-slate-900">
+      {/* Title Header with blue "C." badge and Info icon */}
+      <div className="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-xs font-extrabold text-blue-600 font-sans">
             c.
           </span>
-          <h3 className="text-base font-bold text-slate-900 tracking-tight">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight">
             Working Expense - Demand-wise Analytics
           </h3>
-          <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full ml-2">
-            <Sparkles className="h-3 w-3" />
+          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-blue-600 bg-blue-50 border border-blue-200 px-1.5 py-0.2 rounded-full ml-1">
+            <Sparkles className="h-2.5 w-2.5" />
             AI Analyzed
           </span>
         </div>
-        <Info className="h-4 w-4 text-slate-400 hover:text-slate-600 cursor-pointer" />
+        <Info className="h-3.5 w-3.5 text-slate-400 hover:text-slate-600 cursor-pointer" />
       </div>
 
-      {/* Responsive Table matching Screenshot 2 */}
+      {/* Compact Responsive Table */}
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs border-collapse">
           <thead>
-            <tr className="border-b border-slate-200 text-[11px] font-bold text-slate-700 uppercase tracking-wider">
-              <th className="py-2.5 px-3 w-28">DEMAND</th>
-              <th className="py-2.5 px-3">BROAD HEAD</th>
-              <th className="py-2.5 px-3 text-right">ACTUAL (CR)</th>
-              <th className="py-2.5 px-3 text-right">BP (CR)</th>
-              <th className="py-2.5 px-3 text-center">VAR %</th>
-              <th className="py-2.5 px-3 min-w-[280px]">AI NOTE</th>
+            <tr className="border-b border-slate-200 text-[10px] font-bold text-slate-600 uppercase tracking-wider">
+              <th className="py-1.5 px-2 w-24">DEMAND</th>
+              <th className="py-1.5 px-2">BROAD HEAD</th>
+              <th className="py-1.5 px-2 text-right">ACTUAL (CR)</th>
+              <th className="py-1.5 px-2 text-right">BP (CR)</th>
+              <th className="py-1.5 px-2 text-center">VAR %</th>
+              <th className="py-1.5 px-2 min-w-[220px]">AI NOTE</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 font-medium">
+          <tbody className="divide-y divide-slate-100 text-[11px] font-medium">
             {data.map((row, idx) => {
               const isPositive = row.varPct >= 0
               const formattedVar = isPositive
@@ -60,34 +60,34 @@ export function DemandWiseAnalytics({
               return (
                 <tr
                   key={idx}
-                  className="hover:bg-slate-50/80 transition-colors"
+                  className="hover:bg-slate-50 transition-colors"
                 >
                   {/* Demand */}
-                  <td className="py-3 px-3 font-bold text-slate-900 whitespace-nowrap">
+                  <td className="py-1.5 px-2 font-bold text-slate-900 whitespace-nowrap">
                     {row.demand}
                   </td>
 
                   {/* Broad Head */}
-                  <td className="py-3 px-3 text-slate-800 font-medium">
+                  <td className="py-1.5 px-2 text-slate-800 font-medium">
                     {row.broadHead}
                   </td>
 
                   {/* Actual Cr */}
-                  <td className="py-3 px-3 text-right font-mono text-slate-700">
+                  <td className="py-1.5 px-2 text-right font-mono text-slate-700">
                     {typeof row.actualCr === 'number'
                       ? row.actualCr.toFixed(2)
                       : row.actualCr}
                   </td>
 
                   {/* BP Cr */}
-                  <td className="py-3 px-3 text-right font-mono text-slate-700 font-semibold">
+                  <td className="py-1.5 px-2 text-right font-mono text-slate-700 font-semibold">
                     {row.bpCr.toFixed(2)}
                   </td>
 
                   {/* Var % */}
-                  <td className="py-3 px-3 text-center">
+                  <td className="py-1.5 px-2 text-center">
                     <span
-                      className={`font-mono font-bold text-[11px] ${
+                      className={`font-mono font-bold text-[10px] ${
                         isPositive ? 'text-emerald-600' : 'text-rose-600'
                       }`}
                     >
@@ -96,7 +96,7 @@ export function DemandWiseAnalytics({
                   </td>
 
                   {/* AI Note */}
-                  <td className="py-3 px-3 text-[11px] text-slate-600 leading-snug">
+                  <td className="py-1.5 px-2 text-[10px] text-slate-600 leading-snug">
                     {row.aiNote}
                   </td>
                 </tr>

@@ -6,6 +6,7 @@ import { MonthlyEarningsExpenseChart } from '@/features/dashboard/components/Mon
 import { MonthlyVarianceHeatmap } from '@/features/dashboard/components/MonthlyVarianceHeatmap'
 import { DemandWiseAnalytics } from '@/features/dashboard/components/DemandWiseAnalytics'
 import { DivisionRankingList } from '@/features/dashboard/components/DivisionRankingList'
+import { AIHighlights } from '@/features/dashboard/components/AIHighlights'
 import { ForecastOutlook } from '@/features/dashboard/components/ForecastOutlook'
 import { AnnualTargetAchievement } from '@/features/dashboard/components/AnnualTargetAchievement'
 import { AgentPanel } from '@/features/ai-agent/components/AgentPanel'
@@ -33,23 +34,22 @@ export function DashboardLayout() {
   return (
     <ErrorBoundary>
       <div className="min-h-screen bg-[#040e1f] text-slate-100 flex flex-col selection:bg-blue-600 selection:text-white">
-        {/* Header with AI Assistant Button & Profile */}
+        {/* Header with Month Filter & Profile */}
         <Header />
 
         <div className="flex flex-1 overflow-hidden">
           {/* Left Vertical Nav Rail */}
           <Sidebar />
 
-          {/* Main Dashboard Canvas */}
-          <main className="flex-1 overflow-y-auto p-3 sm:p-4.5 space-y-4 pb-24">
-            {/* Top 3-Column Section */}
-            <div className="grid grid-cols-1 xl:grid-cols-12 gap-3.5 sm:gap-4 items-start">
+          {/* Main Dashboard Canvas - Compact & Beautiful Integrated Grid */}
+          <main className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4 pb-20">
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-3.5 items-start">
               {/* Column 1: Left Summary Cards (Width: 3/12) */}
               <div className="xl:col-span-3 space-y-3.5">
                 <SummaryCardGrid cards={cards} isLoading={isLoadingCards} />
               </div>
 
-              {/* Column 2: Center Charts & Heatmap (Width: 6/12) */}
+              {/* Column 2: Center Charts + Heatmap + Demand Analytics (Width: 6/12) */}
               <div className="xl:col-span-6 space-y-3.5">
                 {/* Monthly Earnings vs Working Expense Trend */}
                 <MonthlyEarningsExpenseChart
@@ -62,10 +62,19 @@ export function DashboardLayout() {
                   data={heatmap}
                   isLoading={isLoadingHeatmap}
                 />
+
+                {/* Compact Section C: Demand-Wise Analytics Table */}
+                <DemandWiseAnalytics
+                  data={demandAnalytics}
+                  isLoading={isLoadingDemandAnalytics}
+                />
               </div>
 
-              {/* Column 3: Right Column - Division Rankings + Annual Targets + Forecast (Width: 3/12) */}
+              {/* Column 3: Right Column - AI Highlights + Division Rankings + Targets + Forecast (Width: 3/12) */}
               <div className="xl:col-span-3 space-y-3.5">
+                {/* 💡 AI Highlights Card */}
+                <AIHighlights />
+
                 {/* Division Rankings */}
                 <DivisionRankingList
                   data={divisionRankings}
@@ -78,14 +87,6 @@ export function DashboardLayout() {
                 {/* Forecast & Year-End Outlook */}
                 <ForecastOutlook />
               </div>
-            </div>
-
-            {/* Bottom Full-Width Section: Working Expense - Demand-wise Analytics */}
-            <div className="w-full">
-              <DemandWiseAnalytics
-                data={demandAnalytics}
-                isLoading={isLoadingDemandAnalytics}
-              />
             </div>
           </main>
         </div>
